@@ -1,4 +1,4 @@
-# :gear: `setup-spacectl`
+# :gear: `setup-spacectl` [![Tests](https://github.com/Be-Streamlined/action-setup-spacectl/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/Be-Streamlined/action-setup-spacectl/actions/workflows/test.yml)
 > An action that can be used to setup the [Spacelift](https://spacelift.io) Spacectl CLI tool in a github action
 
 ## About
