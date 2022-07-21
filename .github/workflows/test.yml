@@ -29,16 +29,16 @@ jobs:
 
     - name: Capture spacectl version installed
       run: |
-        export GH_VERSION=$( spacectl --version )
-        echo 'GH_VERSION_INSTALLED<<EOF' >> $GITHUB_ENV
-        gh --version >> $GITHUB_ENV
-        echo 'EOF' >> $GITHUB_ENV
+        export SPACECTL_VERSION=$( spacectl --version )
+        echo 'SPACECTL_VERSION_INSTALLED<<EOF' >> $SPACECTL_ENV
+        spacectl --version >> $SPACECTL_ENV
+        echo 'EOF' >> $SPACECTL_ENV
     - name: Verify
       shell: python
       env:
-        GH_VERSION_EXPECTED: ${{ matrix.version }}
+        SPACECTL_VERSION_EXPECTED: ${{ matrix.version }}
       run: |
         import sys, os
         sys.exit(
-            int(not os.environ["GH_VERSION_EXPECTED"] in os.environ["GH_VERSION_INSTALLED"])
+            int(not os.environ["SPACECTL_VERSION_EXPECTED"] in os.environ["SPACECTL_VERSION_INSTALLED"])
         )
