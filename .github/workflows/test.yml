@@ -55,7 +55,7 @@ jobs:
       - name: Create Tag
         env:
           NEXT_VERSION: ${{ steps.next_version.outputs.version }}
-        run:
+        run: |
           git config --global user.name '${{ github.actor }}'
           git config --global user.email '${{github.actor}}@users.noreply.github.com'
           git tag v$NEXT_VERSION && git push --tags
