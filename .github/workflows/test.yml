@@ -29,5 +29,5 @@ jobs:
 
     - name: Capture spacectl version installed
       run: |
-        spacetl --version | grep ${{ matrix['version']}}
+        spacectl --version | grep ${{ matrix['version']}}
 
