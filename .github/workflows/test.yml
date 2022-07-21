@@ -31,3 +31,32 @@ jobs:
       run: |
         spacectl --version | grep ${{ matrix['version']}}
 
+  create_release:
+    runs-on: ubuntu-22.04
+    name: Create a Release
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs:
+      - test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - uses: paulhatch/semantic-version@v4.0.2
+        id: next_version
+        with:
+          branch: "main"
+          tag_prefix: "v"
+          major_pattern: "[major]"
+          minor_pattern: "[minor]"
+          format: "${major}.${minor}.${patch}"
+          short_tags: false
+          bump_each_commit: true
+      - name: Create Tag
+        env:
+          NEXT_VERSION: ${{ steps.next_version.outputs.version }}
+        run:
+          git config --global user.name '${{ github.actor }}'
+          git config --global user.email '${{github.actor}}@users.noreply.github.com'
+          git tag v$NEXT_VERSION && git push --tags
+    
