@@ -29,16 +29,5 @@ jobs:
 
     - name: Capture spacectl version installed
       run: |
-        export SPACECTL_VERSION=$( spacectl --version )
-        echo 'SPACECTL_VERSION_INSTALLED<<EOF' >> $SPACECTL_ENV
-        spacectl --version >> $SPACECTL_ENV
-        echo 'EOF' >> $SPACECTL_ENV
-    - name: Verify
-      shell: python
-      env:
-        SPACECTL_VERSION_EXPECTED: ${{ matrix.version }}
-      run: |
-        import sys, os
-        sys.exit(
-            int(not os.environ["SPACECTL_VERSION_EXPECTED"] in os.environ["SPACECTL_VERSION_INSTALLED"])
-        )
+        spacetl --version | grep ${{ matrix['version']}}
+
