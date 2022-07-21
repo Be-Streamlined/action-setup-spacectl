@@ -58,7 +58,7 @@ function mapArch(arch) {
 // return value in [darwin, linux, windows]
 function mapOS(os) {
   const mappings = {
-    darwin: 'macOS',
+    darwin: 'darwin',
     win32: 'windows'
   };
   return mappings[os] || os;
