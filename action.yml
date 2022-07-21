@@ -1,0 +1,10 @@
+name: 'Setup Spacelift Spacectl'
+description: 'Setup the Spacelift CLI tool'
+inputs:
+  version:  # id of input
+    description: 'The version to install'
+    required: false
+    default: '0.10.0'
+runs:
+  using: 'node16'
+  main: 'index.js'
